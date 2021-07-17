@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: [3.7, 3.8, 3.9]
+        python_version: [3.6, 3.7, 3.8, 3.9]
 
     steps:
     - uses: actions/checkout@v1
@@ -24,11 +24,15 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
-        pipenv run flake8 airflow_nessie_provider tests --exclude airflow_provider_nessie/example_dags/*
         pipenv run pytest --cov=airflow_provider_nessie/
         pipenv run codecov
+    - name: Lint
+      if: matrix.python_version == 3.7
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      run: |
+        pipenv run flake8 airflow_provider_nessie tests --exclude airflow_provider_nessie/example_dags/*
         pipenv run mypy --ignore-missing-imports -p airflow_provider_nessie
-
   release:
     runs-on: ubuntu-latest
     needs: test

@@ -4,7 +4,7 @@
 Contains important descriptions for registering to Airflow
 """
 
-__version__ = "0.0.0"
+__version__ = "0.0.6"
 
 
 def get_provider_info() -> dict:

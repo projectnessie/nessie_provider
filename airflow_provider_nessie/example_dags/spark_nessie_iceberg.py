@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import os
-from typing import Any
-from typing import Dict
+from typing import Any, Dict
 
 from airflow.models import DAG
 from airflow.providers.amazon.aws.hooks.base_aws import AwsBaseHook
 from airflow.providers.apache.spark.operators.spark_sql import SparkSqlOperator
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 from airflow.utils.dates import days_ago
-from nessie_provider.hooks.nessie_hook import NessieHook
-from nessie_provider.operators.create_branch_operator import CreateBranchOperator
-from nessie_provider.operators.merge_branch_operator import MergeOperator
+
+from airflow_provider_nessie.hooks.nessie_hook import NessieHook
+from airflow_provider_nessie.operators.create_branch_operator import CreateBranchOperator
+from airflow_provider_nessie.operators.merge_branch_operator import MergeOperator
 
 
 def monkey_patch(env_vars):
@@ -36,7 +36,7 @@ default_args = {
     "owner": "airflow",
 }
 with DAG(
-    dag_id="example_spark_operator",
+    dag_id="example_spark_nessie_iceberg_operator",
     default_args=default_args,
     schedule_interval=None,
     start_date=days_ago(2),
@@ -55,7 +55,7 @@ with DAG(
     nessie_conn = NessieHook("nessie-default").get_connection("nessie-default")
     conf = {
         "spark.sql.execution.pyarrow.enabled": "true",
-        "spark.sql.catalog.nessie.warehouse": "s3://rymurr.test.bucket/",
+        "spark.sql.catalog.nessie.warehouse": "s3://test.bucket/",
         "spark.sql.catalog.nessie.io-impl": "org.apache.iceberg.aws.s3.S3FileIO",
         "spark.sql.extensions": "org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions",
         "spark.sql.catalog.nessie": "org.apache.iceberg.spark.SparkCatalog",
@@ -81,7 +81,7 @@ with DAG(
         sql="""CREATE TEMPORARY VIEW parquetTable
 USING org.apache.spark.sql.parquet
 OPTIONS (
-  path "s3a://rymurr.test.bucket/region.parquet"
+  path "s3a://test.bucket/region.parquet"
 );CREATE TABLE nessie.testing.region USING iceberg AS SELECT * FROM parquetTable""",
         conn_id="spark-cluster-sql",
         task_id="region",
