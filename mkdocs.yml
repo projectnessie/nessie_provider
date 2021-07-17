@@ -1,0 +1,25 @@
+site_name: Nessie Airflow Provider
+site_description:
+
+theme:
+  name: material
+  palette:
+    primary: red
+    accent: red
+
+repo_name: projectnessie/nessie_provider
+repo_url: https://github.com/projectnessie/nessie_provider
+edit_uri: ""
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
+  - toc:
+      permalink: true
+  - admonition
+  - codehilite
+  - pymdownx.superfences
+  - pymdownx.tasklist
+
+nav:
+  - About: index.md

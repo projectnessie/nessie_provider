@@ -1,0 +1,54 @@
+[build-system]
+requires = ["flit_core >=2,<3"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "airflow_provider_nessie"
+dist-name = "airflow-provider-nessie"
+author = "Project Nessie"
+author-email = "nessie-release-builder@dremio.com"
+home-page = "https://github.com/projectnessie/nessie_provider"
+classifiers = [
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3 :: Only",
+]
+description-file = "README.md"
+requires-python = ">=3.7"
+requires = [
+]
+
+[tool.flit.metadata.requires-extra]
+
+[tool.flit.metadata.urls]
+Documentation = "https://projectnessie.github.io/nessie_provider"
+
+[tool.black]
+line-length = 140
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | docs
+)/
+'''
+
+[tool.coverage.paths]
+source = ["src", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["pynessie"]
+omit = ["pynessie/auth/*.py"]
+
+[tool.coverage.report]
+show_missing = true
