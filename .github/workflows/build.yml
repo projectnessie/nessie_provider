@@ -31,7 +31,7 @@ jobs:
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       run: |
-        pipenv run flake8 airflow_provider_nessie tests --exclude airflow_provider_nessie/example_dags/*
+        pipenv run flake8 airflow_provider_nessie tests --exclude "airflow_provider_nessie/example_dags/*"
         pipenv run mypy --ignore-missing-imports -p airflow_provider_nessie
   release:
     runs-on: ubuntu-latest
