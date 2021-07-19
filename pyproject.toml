@@ -21,6 +21,9 @@ requires = [
   "pynessie==0.8.3"
 ]
 
+[tool.flit.entrypoints."apache_airflow_provider"]
+provider_info = "nessie_provider.__init__:get_provider_info"
+
 [tool.flit.metadata.requires-extra]
 
 [tool.flit.metadata.urls]
