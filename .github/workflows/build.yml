@@ -50,7 +50,7 @@ jobs:
         pipenv install --dev
     - name: Release on PyPI
       env:
-        FLIT_USERNAME: ${{ secrets.FLIT_USERNAME }}
+        FLIT_USERNAME: __token__
         FLIT_PASSWORD: ${{ secrets.FLIT_PASSWORD }}
       run: |
         pipenv run flit publish
