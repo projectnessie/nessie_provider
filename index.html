@@ -234,6 +234,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operators-and-hooks" class="md-nav__link">
+    Operators and Hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#development" class="md-nav__link">
     Development
   </a>
@@ -308,6 +328,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#operators-and-hooks" class="md-nav__link">
+    Operators and Hooks
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#development" class="md-nav__link">
     Development
   </a>
@@ -368,12 +408,26 @@
 
 <p><a href="https://github.com/projectnessie/nessie_provider/actions"><img alt="build" src="https://github.com/projectnessie/nessie_provider/workflows/Build/badge.svg" /></a>
 <a href="https://codecov.io/gh/projectnessie/nessie_provider"><img alt="codecov" src="https://codecov.io/gh/projectnessie/nessie_provider/branch/master/graph/badge.svg" /></a>
-<a href="https://dependabot.com"><img alt="Dependabot Status" src="https://api.dependabot.com/badges/status?host=github&amp;repo=projectnessie/nessie_provider" /></a>
 <a href="https://badge.fury.io/py/airflow-provider-nessie"><img alt="PyPI version" src="https://badge.fury.io/py/airflow-provider-nessie.svg" /></a></p>
 <hr />
 <p><strong>Documentation</strong>: <a href="https://projectnessie.github.io/nessie_provider" target="_blank">https://projectnessie.github.io/nessie_provider</a></p>
 <p><strong>Source Code</strong>: <a href="https://github.com/projectnessie/nessie_provider" target="_blank">https://github.com/projectnessie/nessie_provider</a></p>
 <hr />
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>To use in airflow install via pip <code>pip install airflow-provider-nessie</code>. See <a href="https://projectnessie.org/try">Nessie Documentation</a> for
+instructions on starting and using a Nessie server.</p>
+<h3 id="operators-and-hooks">Operators and Hooks<a class="headerlink" href="#operators-and-hooks" title="Permanent link">&para;</a></h3>
+<p>To interact with Nessie from an airflow DAG you have the following options:</p>
+<ul>
+<li>Nessie Hook: register as a connection w/ Airflow and store your Nessie url and credentials</li>
+<li>Create reference operator: Create a Branch or Tag as part of an airflow DAG</li>
+<li>Delete reference operator: Delete a Branch or Tag as part of an airflow DAG</li>
+<li>Commit operator: commit objects to the Nessie database on a given branch</li>
+<li>Merge operator: merge one branch into another</li>
+</ul>
+<p>These can be seen in action by looking at the <a href="https://github.com/projectnessie/nessie_provider/tree/master/airflow_provider_nessie/example_dags">Example DAGs</a>.
+The <code>basic_nessie.py</code> DAG shows each operator in action and the <code>spark_nessie_iceberg.py</code> DAG shows a more complicated example of performing an iceberg
+transaction in Nessie from the Spark operator.</p>
 <h2 id="development">Development<a class="headerlink" href="#development" title="Permanent link">&para;</a></h2>
 <h3 id="setup-environement">Setup environement<a class="headerlink" href="#setup-environement" title="Permanent link">&para;</a></h3>
 <p>You should have <a href="https://pipenv.readthedocs.io/en/latest/">Pipenv</a> installed. Then, you can install the dependencies with:</p>
