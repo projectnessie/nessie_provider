@@ -1,3 +1,6 @@
+
+**THIS REPOSITORY IS UNMAINTAINED AND HAS BEEN ARCHIVED ON JAN 31, 2025**
+
 # Nessie Airflow Provider
 
 <p align="center">
